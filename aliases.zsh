@@ -155,20 +155,3 @@ update_zsh_plugins() {
 # shred shortcuts
 alias shredfile="shred -vzu -n7"
 alias shredmount="sudo shred -vfz -n7"
-
-# remove metadata from files
-exif() {
-  [[ ! -n "$1" ]] && { echo "Needs atleast one file..."; return 1; }
-  for file in "$@";
-  do
-    [[ ! -f "$file" ]] && continue
-    case $file in
-      *.jpg)
-        echo "JPG";;
-      *.bash)
-        echo "SHELL";;
-      *)
-        echo "Still haven't learned";;
-    esac
-  done
-}
