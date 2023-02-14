@@ -91,7 +91,7 @@ alias jctl="journalctl -p 3 -xb"
 YTDL_VIDEO="$HOME/Videos"
 YTDL_AUDIO="$HOME/Music"
 alias ytda='yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P $YTDL_AUDIO -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
-alias ytdv='yt-dlp -f "bv+ba/b" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P $YTDL_VIDEO -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
+alias ytdv='yt-dlp -f "bv*+ba/b" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P $YTDL_VIDEO -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
 
 # fd
 alias fd='fd -H'
