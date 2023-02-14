@@ -22,3 +22,4 @@ export PATH
 eval "$(pyenv init --path)"
 eval "$(pdm --pep582)"
 eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/gh_ed25519
