@@ -67,7 +67,7 @@ alias -g fG='| grep -F --color=always'
 
 # get last 10 history
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
-alias ministry_of_truth='nvim $ZDOTDIR/.zhistory'
+alias minitru='nvim $ZDOTDIR/.zhistory'
 
 # configure zoxide
 eval "$(zoxide init --cmd j zsh)"
@@ -124,8 +124,9 @@ alias -s {mkv,mp4,mov,webm}="vlc"
 alias mirror_latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist"
 alias mirror_fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist"
 alias yay="paru"
+alias yayr="paru -R"
 alias yays="paru -S --noconfirm --needed"
-alias yayup="paru -Syu --noconfirm"
+alias yayup="paru -Syyu --noconfirm"
 alias yayQl="paru -Qs"
 alias yayQs="paru -Ss"
 alias yayQf="paru -F"
