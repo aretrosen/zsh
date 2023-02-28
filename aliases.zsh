@@ -16,9 +16,9 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
 	command fd -c always -H --no-ignore-vcs -E .git -td . "${1}"
 }
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
-export FZF_ALT_C_OPTS="--ansi --preview 'exa -a --tree --level=2 {}'"
-export FZF_CTRL_T_OPTS="--ansi --preview 'command bat --color=always --line-range :500 {}' --select-1 --exit-0"
+export FZF_DEFAULT_OPTS="--ansi --height 40% --layout=reverse --border"
+export FZF_ALT_C_OPTS="--preview 'exa -a --tree --level=2 {}'"
+export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 {}' --select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # get faster download
