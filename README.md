@@ -2,6 +2,8 @@
 My zsh dotfiles.
 
 ## Performance:
+The startup of zsh is tuned to be extremely fast. As it is my primary shell, and I have an habit of rapidly closing and opening
+different terminals, fast startup time was preferred for me. See the results of the tuning below, and decide for yourself.
 ```bash
 ❯ hyperfine zsh
 Benchmark 1: zsh
