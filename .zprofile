@@ -14,7 +14,7 @@ export ASAN_OPTIONS='stack_trace_format="[frame=%n, function=%f, location=%S]":s
 source "$HOME/.cargo/env"
 
 typeset -U path
-path=("$HOME/.local/bin" "/usr/local/go/bin" "$HOME/.plenv/bin" "$PYENV_ROOT/bin" "$PNPM_HOME" "$GOPATH/bin" "$DENO_INSTALL/bin" $path)
+path=("$HOME/.local/bin" "/usr/local/go/bin" "/usr/local/zig" "$HOME/.plenv/bin" "$PYENV_ROOT/bin" "$PNPM_HOME" "$GOPATH/bin" "$DENO_INSTALL/bin" $path)
 export PATH
 
 eval "$(pyenv init --path)"
