@@ -46,6 +46,11 @@ autoload -U bashcompinit && bashcompinit && eval "$(register-python-argcomplete 
 
 source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
+# opam configuration
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+# Load ssh-agent
+source "$ZDOTDIR/ssh-agent.zsh" &>/dev/null

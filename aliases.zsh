@@ -156,3 +156,14 @@ update_zsh_plugins() {
 # shred shortcuts
 alias shredfile="shred -vzu -n7"
 alias shredmount="sudo shred -vfz -n7"
+
+# clear and reset
+clear() {
+  echoti civis >"$TTY"
+  printf '%b' '\e[H\e[2J' >"$TTY"
+  zle .reset-prompt
+  zle -R
+  printf '%b' '\e[3J' >"$TTY"
+  echoti cnorm >"$TTY"
+}
+alias cls="clear"

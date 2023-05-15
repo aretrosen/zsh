@@ -52,6 +52,9 @@ HISTSIZE=50000
 # lines of history store in the HISTFILE
 SAVEHIST=40000
 
+# don't save all commands, especially not the rm
+HISTORY_IGNORE="rm"
+
 # append histories instead of replacing them
 setopt appendhistory
 
