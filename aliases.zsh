@@ -74,15 +74,7 @@ eval "$(zoxide init --cmd j zsh)"
 
 # nvim
 alias vim='nvim'
-
-# better edit
-e() {
-  for file in "$@"
-  do 
-    [[ ! -e "$file" ]] && install -m 644 -D /dev/null "$file"
-  done
-  nvim -p "$@"
-}
+alias vi='vim'
 
 # journalctl error mesages
 alias jctl="journalctl -p 3 -xb"
@@ -121,23 +113,19 @@ alias -s {mkv,mp4,mov,webm}="vlc"
 
 # arch linux stuff
 # note: I don't like sudo in aliases, but still it's there for convenience
-alias mirror_latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist"
-alias mirror_fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist"
-alias yay="paru"
+alias mirror-latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist; sudo pacman -Syy"
+alias mirror-fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist; sudo pacman -Syy"
+alias yay="paru -S --noconfirm --needed"
 alias yayr="paru -R"
-alias yays="paru -S --noconfirm --needed"
 alias yayup="paru -Syu --devel --noconfirm"
 alias yayQl="paru -Qs"
 alias yayQs="paru -Ss"
 alias yayQf="paru -F"
-alias yayrp='sudo pacman -Rncs $(paru -Qdtq)'
-alias yayrc='paru -Sc;sudo paccache -rk1'
+alias yayRp='sudo pacman -Rncs $(paru -Qdtq)'
+alias yayRc='paru -Sc;sudo paccache -rk1'
 
 # command not found using paru
 source $ZDOTDIR/command_not_found.zsh
-
-# clear screen on cls
-alias cls=clear
 
 # PDF aliases
 alias topdf="libreoffice --headless --convert-to pdf"
@@ -146,7 +134,7 @@ mergepdf() {
 }
 
 # update zsh plugins
-update_zsh_plugins() {
+update-zsh-plugins() {
   for dir in "$HOME/.config/zsh/plugins/"*/;
   do 
     echo '\e[1;32mUpdating '$(basename $dir)'\e[0m' && git -C $dir pull
@@ -167,3 +155,6 @@ clear() {
   echoti cnorm >"$TTY"
 }
 alias cls="clear"
+
+# make arrow keys work
+alias clasp="rlwrap clasp"
