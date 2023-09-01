@@ -122,7 +122,7 @@ alias yayQl="paru -Qs"
 alias yayQs="paru -Ss"
 alias yayQf="paru -F"
 alias yayRp='sudo pacman -Rncs $(paru -Qdtq)'
-alias yayRc='paru -Sc;sudo paccache -rk1'
+alias yayCc='paru -Sc;sudo paccache -rk1'
 
 # command not found using paru
 source $ZDOTDIR/command_not_found.zsh
@@ -158,3 +158,6 @@ alias cls="clear"
 
 # make arrow keys work
 alias clasp="rlwrap clasp"
+
+# aliases for jetbrains toolbox for android studio
+alias jetbrains-toolbox="/opt/jetbrains-toolbox/jetbrains-toolbox"
