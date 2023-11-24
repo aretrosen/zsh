@@ -17,7 +17,8 @@ source "$XDG_DATA_HOME/emsdk/emsdk_env.sh"
 source "/opt/intel/oneapi/setvars.sh" &>/dev/null
 
 typeset -U path
-path=("$HOME/.local/bin" "/usr/local/go/bin" "/opt/cuda/bin" "$HOME/.plenv/bin" "$PYENV_ROOT/bin" "$PNPM_HOME" "$GOPATH/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" $path)
+path=("$HOME/.local/bin" "/usr/local/zig" "$HOME/.plenv/bin" "$PYENV_ROOT/bin" "$PNPM_HOME" "$GOPATH/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" $path)
+path+="/opt/cuda/bin"
 export PATH
 
 eval "$(pyenv init --path)"

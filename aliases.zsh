@@ -39,13 +39,17 @@ alias rmi='rm -i'
 # ps aliases
 alias psa="ps auxf"
 
-# alias to open, copy and paste
-alias o='xdg-open'
-alias pbc='xclip -selection clipboard -in'
-alias pbp='xclip -selection clipboard -out'
+# alias to copy and paste
+alias open='xdg-open'
+pbc() {
+  [[ -z $WAYLAND_DISPLAY ]] && /usr/bin/xclip -selection clipboard -in $1 || /usr/bin/wl-copy <$1
+}
+pbp() {
+  [[ -z $WAYLAND_DISPLAY ]] && /usr/bin/xclip -selection clipboard -out $1 || /usr/bin/wl-paste <$1
+}
 
 # server current directory under http
-alias http-serve="jwebserver -b 0.0.0.0"
+alias http-server="jwebserver -b 0.0.0.0"
 
 # less termcolors
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -57,13 +61,13 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # grepping with colors
-alias grep='grep --color=always'
-alias egrep='grep -E --color=always'
-alias fgrep='grep -F --color=always'
+alias grep='/usr/bin/grep --color=always'
+alias egrep='/usr/bin/grep -E --color=always'
+alias fgrep='/usr/bin/grep -F --color=always'
 
-alias -g G='| grep --color=always'
-alias -g eG='| grep -E --color=always'
-alias -g fG='| grep -F --color=always'
+alias -g G='| /usr/bin/grep --color=always'
+alias -g eG='| /usr/bin/grep -E --color=always'
+alias -g fG='| /usr/bin/grep -F --color=always'
 
 # get last 10 history
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
@@ -76,17 +80,18 @@ eval "$(zoxide init --cmd j zsh)"
 alias vim='nvim'
 alias vi='vim'
 
+# emacs
+alias emacs="/usr/bin/emacsclient -c -a 'emacs'"
+
 # journalctl error mesages
-alias jctl="journalctl -p 3 -xb"
+alias jctl="/usr/bin/journalctl -p 3 -xb"
 
 # YTDL setup
-YTDL_VIDEO="$HOME/Videos"
-YTDL_AUDIO="$HOME/Music"
-alias ytda='yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P $YTDL_AUDIO -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
-alias ytdv='yt-dlp -f "(bv*[fps>30]/bv*)[height<=1440]+ba/(b[fps>30]/b)[height<=1440]" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P $YTDL_VIDEO -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
+alias ytda='/usr/bin/yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P ${YTDL_AUDIO:-$HOME/Music} -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
+alias ytdv='/usr/bin/yt-dlp -f "(bv*[fps>30]/bv*)[height<=1440]+ba/(b[fps>30]/b)[height<=1440]" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P ${YTDL_VIDEO:-$HOME/Videos} -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
 
 # fd
-alias fd='fd -H'
+alias fd='/usr/bin/fd -H'
 
 # make directory and change directory
 mkcd() {
@@ -113,44 +118,45 @@ alias -s {mkv,mp4,mov,webm}="vlc"
 
 # arch linux stuff
 # note: I don't like sudo in aliases, but still it's there for convenience
-alias mirror-latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist; sudo pacman -Syy"
-alias mirror-fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist; sudo pacman -Syy"
-alias yay="paru -S --noconfirm --needed"
-alias yayr="paru -R"
-alias yayup="paru -Syu --devel --noconfirm"
-alias yayQl="paru -Qs"
-alias yayQs="paru -Ss"
-alias yayQf="paru -F"
-alias yayRp='sudo pacman -Rncs $(paru -Qdtq)'
-alias yayCc='paru -Sc;sudo paccache -rk1'
+alias mirror-latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
+alias mirror-fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
+alias yays="/usr/bin/yay --noconfirm -S --needed"
+alias yayup="/usr/bin/yay --noconfirm --answeredit NotInstalled -Syu"
+alias yayr="/usr/bin/yay -R"
+alias yayQl="/usr/bin/yay -Qs"
+alias yayQs="/usr/bin/yay -Ss"
+alias yayQf="/usr/bin/yay -F"
+alias yayRp='sudo pacman -Rncs $(/usr/bin/yay -Qdtq)'
+alias yayCc='/usr/bin/yay -Sc && sudo paccache -rk1'
 
 # command not found using paru
 source $ZDOTDIR/command_not_found.zsh
 
 # PDF aliases
-alias topdf="libreoffice --headless --convert-to pdf"
+alias topdf="/usr/bin/libreoffice --headless --convert-to pdf"
 mergepdf() {
-  gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "${@:2}"
+  /usr/bin/gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "${@:2}"
 }
 
 # update zsh plugins
 update-zsh-plugins() {
   for dir in "$HOME/.config/zsh/plugins/"*/;
-  do 
+  do
     echo '\e[1;32mUpdating '$(basename $dir)'\e[0m' && git -C $dir pull
   done
 }
 
 # shred shortcuts
-alias shredfile="shred -vzu -n7"
-alias shredmount="sudo shred -vfz -n7"
+alias shredfile="/usr/bin/shred -vzu -n7"
+alias shredmount="sudo /usr/bin/shred -vfz -n7"
 
 # clear and reset
 clear() {
   echoti civis >"$TTY"
   printf '%b' '\e[H\e[2J' >"$TTY"
-  zle .reset-prompt
-  zle -R
+  TRAPWINCH() {
+    zle && { zle .reset-prompt; zle -R }
+  }
   printf '%b' '\e[3J' >"$TTY"
   echoti cnorm >"$TTY"
 }
@@ -160,4 +166,4 @@ alias cls="clear"
 alias clasp="rlwrap clasp"
 
 # aliases for jetbrains toolbox for android studio
-alias jetbrains-toolbox="/opt/jetbrains-toolbox/jetbrains-toolbox"
+alias jetbrains-toolbox="nohup /opt/jetbrains-toolbox/jetbrains-toolbox &>/dev/null & disown"

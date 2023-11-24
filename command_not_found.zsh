@@ -3,7 +3,7 @@ command_not_found_handler(){
     local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
     printf 'zsh: command not found: %s\n' "$1"
     local entries=(
-        ${(f)"$(paru -F --machinereadable -- "/usr/bin/$1")"}
+        ${(f)"$(/usr/bin/yay -F --machinereadable -- "/usr/bin/$1")"}
     )
     if (( ${#entries[@]} ))
     then
