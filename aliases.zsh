@@ -1,11 +1,11 @@
-# exa aliases
-alias ls='exa --icons --group-directories-first --git'
+# eza aliases
+alias ls='eza --icons --group-directories-first --git'
 alias l='ls -lbFh'
 alias ll='l -a'
-alias lt='exa -alh --icons --tree --level=2'
+alias lr='eza -alh --icons --tree --level=2'
 alias lm='ll --sort=mod'
 
-# fzf with fd, bat and exa
+# fzf with fd, bat and eza
 source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_COMMAND='command fd -c always -H --no-ignore-vcs -E .git -tf'
 export FZF_ALT_C_COMMAND='command fd -c always -H --no-ignore-vcs -E .git -td'
@@ -17,7 +17,7 @@ _fzf_compgen_dir() {
 	command fd -c always -H --no-ignore-vcs -E .git -td . "${1}"
 }
 export FZF_DEFAULT_OPTS="--ansi --height 40% --layout=reverse --border"
-export FZF_ALT_C_OPTS="--preview 'exa -a --tree --level=2 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza -a --tree --level=2 {}'"
 export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 {}' --select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
@@ -61,20 +61,14 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # grepping with colors
-alias grep='/usr/bin/grep --color=always'
-alias egrep='/usr/bin/grep -E --color=always'
-alias fgrep='/usr/bin/grep -F --color=always'
+alias grep='/usr/bin/rg --hidden --smart-case'
 
-alias -g G='| /usr/bin/grep --color=always'
-alias -g eG='| /usr/bin/grep -E --color=always'
-alias -g fG='| /usr/bin/grep -F --color=always'
+alias -g G='| grep'
+alias -g C='| /usr/bin/wc -l'
 
 # get last 10 history
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 alias minitru='nvim $ZDOTDIR/.zhistory'
-
-# configure zoxide
-eval "$(zoxide init --cmd j zsh)"
 
 # nvim
 alias vim='nvim'
@@ -118,19 +112,16 @@ alias -s {mkv,mp4,mov,webm}="vlc"
 
 # arch linux stuff
 # note: I don't like sudo in aliases, but still it's there for convenience
-alias mirror-latest="sudo reflector -l 20 -p https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
-alias mirror-fastest="sudo reflector -f 20 -p https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
-alias yays="/usr/bin/yay --noconfirm -S --needed"
-alias yayup="/usr/bin/yay --noconfirm --answeredit NotInstalled -Syu"
-alias yayr="/usr/bin/yay -R"
+alias mirror-latest="sudo reflector --age 6 --latest 20 --protocol https --sort rate --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
+alias mirror-fastest="sudo reflector --age 6 --fastest 20 --protocol https --sort age --download-timeout 60 --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
+alias yas="/usr/bin/yay --noconfirm -S --needed"
+alias yup="/usr/bin/yay --noconfirm --answeredit NotInstalled -Syu"
+alias yar="/usr/bin/yay -R"
 alias yayQl="/usr/bin/yay -Qs"
 alias yayQs="/usr/bin/yay -Ss"
 alias yayQf="/usr/bin/yay -F"
 alias yayRp='sudo pacman -Rncs $(/usr/bin/yay -Qdtq)'
 alias yayCc='/usr/bin/yay -Sc && sudo paccache -rk1'
-
-# command not found using paru
-source $ZDOTDIR/command_not_found.zsh
 
 # PDF aliases
 alias topdf="/usr/bin/libreoffice --headless --convert-to pdf"
@@ -138,13 +129,7 @@ mergepdf() {
   /usr/bin/gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "${@:2}"
 }
 
-# update zsh plugins
-update-zsh-plugins() {
-  for dir in "$HOME/.config/zsh/plugins/"*/;
-  do
-    echo '\e[1;32mUpdating '$(basename $dir)'\e[0m' && git -C $dir pull
-  done
-}
+alias update-zsh-plugins="git -C $ZDOTDIR submodule update --remote --merge"
 
 # shred shortcuts
 alias shredfile="/usr/bin/shred -vzu -n7"
@@ -167,3 +152,10 @@ alias clasp="rlwrap clasp"
 
 # aliases for jetbrains toolbox for android studio
 alias jetbrains-toolbox="nohup /opt/jetbrains-toolbox/jetbrains-toolbox &>/dev/null & disown"
+
+# aliases for vscode
+alias code="code-insiders"
+
+# alias for chromium
+alias chromium="nohup chromium --user-data-dir=$HOME/chromium-custom-profiles/WithPlugins &>/dev/null & disown"
+alias chromium-apps="nohup chromium --user-data-dir=$HOME/chromium-custom-profiles/OnlineProfile &>/dev/null & disown"

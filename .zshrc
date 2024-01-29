@@ -14,6 +14,7 @@ eval "$(plenv init - zsh)"
 fpath=("$ZDOTDIR/.zfunc" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/command_not_found.zsh
 
 source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -21,7 +22,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+# [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 autoload -U bashcompinit && bashcompinit && eval "$(register-python-argcomplete pipx)"
 
 source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
@@ -50,3 +51,9 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# bun completions
+[ -s "/home/aretro/.bun/_bun" ] && source "/home/aretro/.bun/_bun"
+
+# zoxide setup
+eval "$(zoxide init zsh)"
