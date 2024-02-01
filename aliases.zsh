@@ -1,6 +1,6 @@
 # eza aliases
 alias ls='eza --icons --group-directories-first --git'
-alias l='ls -lbFh'
+alias l='ls -lbh'
 alias ll='l -a'
 alias lr='eza -alh --icons --tree --level=2'
 alias lm='ll --sort=mod'
