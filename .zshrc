@@ -29,19 +29,16 @@ source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # opam configuration
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-# Generated integration for contour
-source "$ZDOTDIR/contour.zsh"
-
 # Load ssh-agent
 source "$ZDOTDIR/ssh-agent.zsh" &>/dev/null
 
+# zoxide setup
+eval "$(zoxide init zsh)"
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='$HOME/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='$HOME/micromamba';
+export MAMBA_EXE='/home/aretro/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/aretro/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -51,5 +48,5 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# zoxide setup
-eval "$(zoxide init zsh)"
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
