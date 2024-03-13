@@ -1,5 +1,4 @@
 #compdef pnpm
-###-begin-pnpm-completion-###
 _pnpm_completion () {
   local reply
   local si=$IFS
@@ -14,4 +13,3 @@ _pnpm_completion () {
   fi
 }
 compdef _pnpm_completion pnpm
-###-end-pnpm-completion-###

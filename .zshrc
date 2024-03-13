@@ -40,8 +40,8 @@ source "$ZDOTDIR/ssh-agent.zsh" &>/dev/null
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/home/aretro/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/aretro/micromamba';
+export MAMBA_EXE='$HOME/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='$HOME/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -50,9 +50,6 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-
-# bun completions
-[ -s "/home/aretro/.bun/_bun" ] && source "/home/aretro/.bun/_bun"
 
 # zoxide setup
 eval "$(zoxide init zsh)"
