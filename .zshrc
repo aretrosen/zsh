@@ -8,13 +8,12 @@ fi
 source $ZDOTDIR/options.zsh
 source $ZDOTDIR/keybinds.zsh
 
+# pyenv configuration
 eval "$(pyenv init -)"
-eval "$(plenv init - zsh)"
 
 fpath=("$ZDOTDIR/.zfunc" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/command_not_found.zsh
 
 source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -22,6 +21,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# pipx configuration
 autoload -U bashcompinit && bashcompinit && eval "$(register-python-argcomplete pipx)"
 
 source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
@@ -29,16 +29,13 @@ source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # opam configuration
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
 
-# Load ssh-agent
-source "$ZDOTDIR/ssh-agent.zsh" &>/dev/null
-
-# zoxide setup
-eval "$(zoxide init zsh)"
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/home/aretro/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/aretro/micromamba';
+export MAMBA_EXE='/home/aritro/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/aritro/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -48,5 +45,5 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+# zoxide setup
+eval "$(zoxide init zsh)"
