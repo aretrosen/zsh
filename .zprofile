@@ -16,6 +16,8 @@ export ASAN_OPTIONS='stack_trace_format="[frame=%n, function=%f, location=%S]":s
 
 source "$HOME/.cargo/env"
 
+source "$HOME/.asdf/asdf.sh"
+
 typeset -U path
 path=("$HOME/.local/bin" "$PYENV_ROOT/bin" "$WASMTIME_HOME/bin" "$PNPM_HOME" "$DENO_INSTALL/bin" "$GOPATH/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" $path)
 export PATH

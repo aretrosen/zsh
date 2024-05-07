@@ -167,29 +167,55 @@ zle -N zle-line-init
 
 # https://unix.stackexchange.com/a/390523
 # copy and paste in vi-mode from clipboard
-x11-clip-wrap-widgets() {
-    local copy_or_paste=$1
-    shift
-
-    for widget in $@; do
-        if [[ $copy_or_paste == "copy" ]]; then
-            eval "
-            _x11-clip-wrapped-$widget() {
-                zle .$widget
-                xclip -sel c -i <<<\$CUTBUFFER
-            }
-            "
-        else
-            eval "
-            _x11-clip-wrapped-$widget() {
-                CUTBUFFER=\$(xclip -sel c -o)
-                zle .$widget
-            }
-            "
-        fi
-        zle -N $widget _x11-clip-wrapped-$widget
-    done
-}
+if [[ -z $WAYLAND_DISPLAY ]]; then
+    x11-clip-wrap-widgets() {
+        local copy_or_paste=$1
+        shift
+    
+        for widget in $@; do
+            if [[ $copy_or_paste == "copy" ]]; then
+                eval "
+                _x11-clip-wrapped-$widget() {
+                    zle .$widget
+                    /usr/bin/xclip -sel c -i <<<\$CUTBUFFER
+                }
+                "
+            else
+                eval "
+                _x11-clip-wrapped-$widget() {
+                    CUTBUFFER=\$(/usr/bin/xclip -sel c -o)
+                    zle .$widget
+                }
+                "
+            fi
+            zle -N $widget _x11-clip-wrapped-$widget
+        done
+    }
+else
+    wayland-clip-wrap-widgets() {
+        local copy_or_paste=$1
+        shift
+    
+        for widget in $@; do
+            if [[ $copy_or_paste == "copy" ]]; then
+                eval "
+                _wayland-clip-wrapped-$widget() {
+                    zle .$widget
+                    /usr/bin/wl-copy <<<\$CUTBUFFER
+                }
+                "
+            else
+                eval "
+                _wayland-clip-wrapped-$widget() {
+                    CUTBUFFER=\$(/usr/bin/wl-paste)
+                    zle .$widget
+                }
+                "
+            fi
+            zle -N $widget _wayland-clip-wrapped-$widget
+        done
+    }
+fi
 
 local copy_widgets=(
     vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
@@ -198,8 +224,13 @@ local paste_widgets=(
     vi-put-{before,after}
 )
 
-x11-clip-wrap-widgets copy $copy_widgets
-x11-clip-wrap-widgets paste  $paste_widgets
+if [[ -z $WAYLAND_DISPLAY ]]; then
+    x11-clip-wrap-widgets copy $copy_widgets
+    x11-clip-wrap-widgets paste  $paste_widgets
+else
+    wayland-clip-wrap-widgets copy $copy_widgets
+    wayland-clip-wrap-widgets paste  $paste_widgets
+fi
 
 unset copy_widgets
 unset paste_widgets

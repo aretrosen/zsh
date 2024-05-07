@@ -11,7 +11,7 @@ source $ZDOTDIR/keybinds.zsh
 # pyenv configuration
 eval "$(pyenv init -)"
 
-fpath=("$ZDOTDIR/.zfunc" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
+fpath=("$ZDOTDIR/.zfunc" "$ASDF_DIR/completions" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
 
