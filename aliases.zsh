@@ -68,14 +68,15 @@ alias -g C='| /usr/bin/wc -l'
 
 # get last 10 history
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
-alias minitru='nvim $ZDOTDIR/.zhistory'
+alias minitru='em $ZDOTDIR/.zhistory'
 
 # nvim
-alias vim='nvim'
-alias vi='vim'
+alias vim="/usr/bin/nvim"
+alias vi="vim"
 
 # emacs
 alias emacs="/usr/bin/emacsclient -c -a ''"
+alias em="/usr/bin/emacsclient -t"
 
 # journalctl error mesages
 alias jctl="/usr/bin/journalctl -p 3 -xb"
