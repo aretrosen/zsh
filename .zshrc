@@ -14,6 +14,7 @@ eval "$(pyenv init -)"
 fpath=("$ZDOTDIR/.zfunc" "$ASDF_DIR/completions" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
+source /etc/zsh_command_not_found
 
 source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
