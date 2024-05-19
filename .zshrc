@@ -8,6 +8,9 @@ fi
 source $ZDOTDIR/options.zsh
 source $ZDOTDIR/keybinds.zsh
 
+# zsh-z setup
+source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
+
 # pyenv configuration
 eval "$(pyenv init -)"
 
@@ -45,6 +48,3 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-
-# zoxide setup
-eval "$(zoxide init zsh)"
