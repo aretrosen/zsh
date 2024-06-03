@@ -9,6 +9,7 @@ source $ZDOTDIR/options.zsh
 source $ZDOTDIR/keybinds.zsh
 
 # zsh-z setup
+export ZSHZ_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/zsh-z/data"
 source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
 
 # pyenv configuration
