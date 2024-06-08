@@ -12,10 +12,10 @@ source $ZDOTDIR/keybinds.zsh
 export ZSHZ_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/zsh-z/data"
 source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
 
-# pyenv configuration
-eval "$(pyenv init -)"
+# mise configuration
+eval "$(mise activate zsh)"
 
-fpath=("$ZDOTDIR/.zfunc" "$ASDF_DIR/completions" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
+fpath=("$ZDOTDIR/.zfunc" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
 source /etc/zsh_command_not_found

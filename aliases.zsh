@@ -75,8 +75,8 @@ alias vim="/usr/bin/nvim"
 alias vi="vim"
 
 # emacs
-alias emacs="/usr/bin/emacsclient -c -a 'emacs'"
-alias em="/usr/bin/emacsclient -t -a 'emacs'"
+alias emacs="/usr/bin/emacsclient --alternate-editor= --create-frame"
+alias em="/usr/bin/emacsclient --alternate-editor= --tty"
 
 # journalctl error mesages
 alias jctl="/usr/bin/journalctl -p 3 -xb"
