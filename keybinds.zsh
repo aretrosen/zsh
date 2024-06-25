@@ -1,8 +1,4 @@
 # set up vim mode for zsh
-
-# sourcinf fzf keybinding first, as I am gonna overwrite some
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-
 KEYTIMEOUT=15
 bindkey -v
 

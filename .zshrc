@@ -12,13 +12,19 @@ source $ZDOTDIR/keybinds.zsh
 export ZSHZ_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/zsh-z/data"
 source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
 
+# command-not-found
+source /etc/zsh_command_not_found
+
+# set up fzf
+source <(fzf --zsh)
+
 # mise configuration
 eval "$(mise activate zsh)"
 
 fpath=("$ZDOTDIR/.zfunc" "$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 source $ZDOTDIR/completions.zsh
 source $ZDOTDIR/aliases.zsh
-source /etc/zsh_command_not_found
+
 
 source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -49,3 +55,4 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+#
