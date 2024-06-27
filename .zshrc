@@ -8,12 +8,12 @@ fi
 source $ZDOTDIR/options.zsh
 source $ZDOTDIR/keybinds.zsh
 
+# command-not-found setup
+source /etc/zsh_command_not_found
+
 # zsh-z setup
 export ZSHZ_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/zsh-z/data"
 source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
-
-# command-not-found
-source /etc/zsh_command_not_found
 
 # set up fzf
 source <(fzf --zsh)
@@ -55,4 +55,3 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-#

@@ -1,5 +1,5 @@
-export EDITOR='emacsclient --alternate-editor="sudoedit" --tty'
-export VISUAL='emacsclient --alternate-editor="sudoedit" --tty'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
 
 export TIMEFMT=$'\n%J\n\nreal\t\033[1;32m%*E\033[0m\nuser\t\e[1;32m%*U\e[0m\nsys\t\e[1;32m%*S\e[0m\ncpu\t\e[1;32m%P\e[0m'
