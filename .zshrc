@@ -32,9 +32,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# pipx configuration
-autoload -U bashcompinit && bashcompinit && eval "$(register-python-argcomplete pipx)"
-
 source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # opam configuration

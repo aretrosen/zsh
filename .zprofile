@@ -17,3 +17,5 @@ export ASAN_OPTIONS='stack_trace_format="[frame=%n, function=%f, location=%S]":s
 typeset -U path
 path=("$HOME/.local/bin" "$EMSDK" "$EMSDK/upstream/emscripten" "$PNPM_HOME" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" "$XDG_DATA_HOME/fzf/bin" "/usr/games" $path)
 export PATH
+
+source "$HOME/.cargo/env"
