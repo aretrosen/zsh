@@ -1,6 +1,3 @@
-[submodule "plugins/conda-zsh-completion"]
-	path = plugins/conda-zsh-completion
-	url = https://github.com/conda-incubator/conda-zsh-completion
 [submodule "plugins/powerlevel10k"]
 	path = plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k

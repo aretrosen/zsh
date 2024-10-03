@@ -84,11 +84,13 @@ emacs() {
 }
 
 # journalctl error mesages
-alias jctl="command journalctl -p 3 -xb"
+alias jctl="command journalctl -xb -p 0..4"
 
 # YTDL setup
-alias ytda='command yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P ${YTDL_AUDIO:-$HOME/Music} -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
-alias ytdv='command yt-dlp -f "(bv*[fps>30]/bv*)[height<=1440]+ba/(b[fps>30]/b)[height<=1440]" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P ${YTDL_VIDEO:-$HOME/Videos} -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
+export YTDL_AUDIO="$HOME/Music"
+export YTDL_VIDEO="$HOME/Videos"
+alias ytda='command yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P $YTDL_AUDIO -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
+alias ytdv='command yt-dlp -f "(bv*[fps>30]/bv*)[height<=1440]+ba/(b[fps>30]/b)[height<=1440]" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P $YTDL_VIDEO -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
 
 # make directory and change directory
 mkcd() {
