@@ -74,14 +74,14 @@ alias vim="command nvim"
 alias vi="vim"
 
 # emacs
-alias em="command emacsclient --alternate-editor= --tty"
-emacs() {
-	if [[ -n "$*" ]]; then
-	  command emacsclient --alternate-editor= --reuse-frame "$@"
-	else
-	  command emacsclient --alternate-editor= --create-frame
-	fi
-}
+# alias em="command emacsclient --alternate-editor= --tty"
+# emacs() {
+# 	if [[ -n "$*" ]]; then
+# 	  command emacsclient --alternate-editor= --reuse-frame "$@"
+# 	else
+# 	  command emacsclient --alternate-editor= --create-frame
+# 	fi
+# }
 
 # journalctl error mesages
 alias jctl="command journalctl -xb -p 0..4"

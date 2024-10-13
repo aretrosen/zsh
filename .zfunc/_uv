@@ -121,14 +121,16 @@ never\:"Disables colored output"))' \
 '--no-all-extras[]' \
 '--dev[Include development dependencies]' \
 '--no-dev[Omit development dependencies]' \
-'-m[Run a Python module]' \
-'--module[Run a Python module]' \
+'(-s --script)-m[Run a Python module]' \
+'(-s --script)--module[Run a Python module]' \
 '(--no-dev)--only-dev[Omit non-development dependencies]' \
 '--no-editable[Install any editable dependencies, including the project and any workspace members, as non-editable]' \
 '--isolated[Run the command in an isolated virtual environment]' \
 '(--frozen)--no-sync[Avoid syncing the virtual environment]' \
 '(--frozen)--locked[Assert that the \`uv.lock\` will remain unchanged]' \
 '(--locked)--frozen[Run without updating the \`uv.lock\` file]' \
+'(-m --module)-s[Run the given path as a Python script]' \
+'(-m --module)--script[Run the given path as a Python script]' \
 '--no-index[Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via \`--find-links\`]' \
 '-U[Allow package upgrades, ignoring pinned versions in any existing output file. Implies \`--refresh\`]' \
 '--upgrade[Allow package upgrades, ignoring pinned versions in any existing output file. Implies \`--refresh\`]' \
@@ -178,6 +180,9 @@ _arguments "${_arguments_options[@]}" : \
 '(--script)--name=[The name of the project]:NAME: ' \
 '(--script)--vcs=[Initialize a version control system for the project]:VCS:((git\:"Use Git for version control"
 none\:"Do not use any version control system"))' \
+'--author-from=[Fill in the \`authors\` field in the \`pyproject.toml\`]:AUTHOR_FROM:((auto\:"Fetch the author information from some sources (e.g., Git) automatically"
+git\:"Fetch the author information from Git configuration only"
+none\:"Do not infer the author information"))' \
 '-p+[The Python interpreter to use to determine the minimum supported Python version.]:PYTHON: ' \
 '--python=[The Python interpreter to use to determine the minimum supported Python version.]:PYTHON: ' \
 '--cache-dir=[Path to the cache directory]:CACHE_DIR:_files' \
@@ -2759,7 +2764,7 @@ never\:"Disables colored output"))' \
 ;;
 (publish)
 _arguments "${_arguments_options[@]}" : \
-'--publish-url=[The URL of the upload endpoint]:PUBLISH_URL: ' \
+'--publish-url=[The URL of the upload endpoint (not the index URL)]:PUBLISH_URL: ' \
 '-u+[The username for the upload]:USERNAME: ' \
 '--username=[The username for the upload]:USERNAME: ' \
 '-p+[The password for the upload]:PASSWORD: ' \
