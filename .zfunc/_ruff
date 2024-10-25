@@ -38,7 +38,7 @@ _ruff() {
         case $line[1] in
             (check)
 _arguments "${_arguments_options[@]}" \
-'--output-format=[Output serialization format for violations. The default serialization format is "full"]:OUTPUT_FORMAT:(text concise full json json-lines junit grouped github gitlab pylint rdjson azure sarif)' \
+'--output-format=[Output serialization format for violations. The default serialization format is "full"]:OUTPUT_FORMAT:(concise full json json-lines junit grouped github gitlab pylint rdjson azure sarif)' \
 '-o+[Specify file to write the linter output to (default\: stdout)]:OUTPUT_FILE:_files' \
 '--output-file=[Specify file to write the linter output to (default\: stdout)]:OUTPUT_FILE:_files' \
 '--target-version=[The minimum Python version that should be supported]:TARGET_VERSION:(py37 py38 py39 py310 py311 py312 py313)' \
@@ -904,6 +904,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -958,9 +959,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--ignore=[Comma-separated list of rule codes to disable]:RULE_CODE:((ALL\:"all rules"
@@ -1825,6 +1826,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -1879,9 +1881,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--extend-select=[Like --select, but adds additional rule codes on top of those already specified]:RULE_CODE:((ALL\:"all rules"
@@ -2746,6 +2748,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -2800,9 +2803,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--extend-ignore=[Like --ignore. (Deprecated\: You can just use --ignore instead.)]:RULE_CODE:((ALL\:"all rules"
@@ -3667,6 +3670,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -3721,9 +3725,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--per-file-ignores=[List of mappings from file pattern to code to exclude]:PER_FILE_IGNORES: ' \
@@ -4592,6 +4596,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -4646,9 +4651,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--unfixable=[List of rule codes to treat as ineligible for fix. Only applicable when fix itself is enabled (e.g., via \`--fix\`)]:RULE_CODE:((ALL\:"all rules"
@@ -5513,6 +5518,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -5567,9 +5573,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--extend-fixable=[Like --fixable, but adds additional rule codes on top of those already specified]:RULE_CODE:((ALL\:"all rules"
@@ -6434,6 +6440,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -6488,9 +6495,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '*--extend-unfixable=[Like --unfixable. (Deprecated\: You can just use --unfixable instead.)]:RULE_CODE:((ALL\:"all rules"
@@ -7355,6 +7362,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -7409,9 +7417,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 '--line-length=[Set the line-length for length-associated rules and automatic formatting]:LINE_LENGTH: ' \
@@ -8276,6 +8284,7 @@ FURB145\:"slice-copy"
 FURB148\:"unnecessary-enumerate"
 FURB152\:"math-constant"
 FURB154\:"repeated-global"
+FURB156\:"hardcoded-string-charset"
 FURB157\:"verbose-decimal-constructor"
 FURB161\:"bit-count"
 FURB163\:"redundant-log-base"
@@ -8330,9 +8339,9 @@ TRY003\:"raise-vanilla-args"
 TRY004\:"type-check-without-type-error"
 TRY200\:"reraise-no-cause"
 TRY201\:"verbose-raise"
+TRY203\:"useless-try-except"
 TRY300\:"try-consider-else"
 TRY301\:"raise-within-try"
-TRY302\:"useless-try-except"
 TRY400\:"error-instead-of-exception"
 TRY401\:"verbose-log-message"))' \
 && ret=0
@@ -8615,7 +8624,7 @@ esac
 (( $+functions[_ruff_commands] )) ||
 _ruff_commands() {
     local commands; commands=(
-'check:Run Ruff on the given files or directories (default)' \
+'check:Run Ruff on the given files or directories' \
 'rule:Explain a rule (or all rules)' \
 'config:List or describe the available configuration options' \
 'linter:List all supported upstream linters' \
@@ -8725,7 +8734,7 @@ _ruff__analyze__help__help_commands() {
 (( $+functions[_ruff__help_commands] )) ||
 _ruff__help_commands() {
     local commands; commands=(
-'check:Run Ruff on the given files or directories (default)' \
+'check:Run Ruff on the given files or directories' \
 'rule:Explain a rule (or all rules)' \
 'config:List or describe the available configuration options' \
 'linter:List all supported upstream linters' \

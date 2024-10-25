@@ -9,7 +9,7 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export EMSDK_QUIET=1
 
 export PYTHON_CFLAGS='-march=native -mtune=native -fPIC -fuse-ld=mold'
-export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto=thin --with-dbmliborder=bdb --without-ensurepip'
+export PYTHON_CONFIGURE_OPTS='--disable-gil --enable-bolt --enable-experimental-jit=yes-off --enable-loadable-sqlite-extensions --enable-optimizations --with-dbmliborder=gdbm:bdb:ndbm --with-lto=thin --with-system-expat --with-tzpath=/usr/share/zoneinfo --without-ensurepip'
 export PROFILE_TASK='-m test.regrtest --pgo -j0'
 export ASAN_OPTIONS='stack_trace_format="[frame=%n, function=%f, location=%S]":strict_string_checks=1:detect_stack_use_after_return=1:debug=1:atexit=1:detect_invalid_pointer_pairs=2:check_initialization_order=1:strict_init_order=1:detect_leaks=1'
 

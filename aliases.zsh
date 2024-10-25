@@ -112,14 +112,6 @@ mkdp() {
 # diffs
 alias wdiff="command git --no-pager diff --no-ext-diff --no-index --color=auto --color-words"
 
-# PDF aliases
-alias topdf="command libreoffice --headless --convert-to pdf"
-mergepdf() {
-  command gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile="$1" "${@:2}"
-}
-
-alias update-zsh-plugins="git -C $ZDOTDIR submodule update --remote --merge"
-
 # shred shortcuts
 alias shredfile="command shred -vzu -n7"
 alias shredmount="sudo shred -vfz -n7"

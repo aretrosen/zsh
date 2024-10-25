@@ -67,9 +67,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--with=[Run with the given packages installed]:WITH: ' \
 '*--with-editable=[Run with the given packages installed as editables]:WITH_EDITABLE: ' \
 '*--with-requirements=[Run with all packages listed in the given \`requirements.txt\` files]:WITH_REQUIREMENTS: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -180,6 +182,12 @@ _arguments "${_arguments_options[@]}" : \
 '(--script)--name=[The name of the project]:NAME: ' \
 '(--script)--vcs=[Initialize a version control system for the project]:VCS:((git\:"Use Git for version control"
 none\:"Do not use any version control system"))' \
+'(--script --no-package)--build-backend=[Initialize a build-backend of choice for the project]:BUILD_BACKEND:((hatch\:"Use \[hatchling\](https\://pypi.org/project/hatchling) as the project build backend"
+flit\:"Use \[flit-core\](https\://pypi.org/project/flit-core) as the project build backend"
+pdm\:"Use \[pdm-backend\](https\://pypi.org/project/pdm-backend) as the project build backend"
+setuptools\:"Use \[setuptools\](https\://pypi.org/project/setuptools) as the project build backend"
+maturin\:"Use \[maturin\](https\://pypi.org/project/maturin) as the project build backend"
+scikit\:"Use \[scikit-build-core\](https\://pypi.org/project/scikit-build-core) as the project build backend"))' \
 '--author-from=[Fill in the \`authors\` field in the \`pyproject.toml\`]:AUTHOR_FROM:((auto\:"Fetch the author information from some sources (e.g., Git) automatically"
 git\:"Fetch the author information from Git configuration only"
 none\:"Do not infer the author information"))' \
@@ -243,9 +251,11 @@ _arguments "${_arguments_options[@]}" : \
 '--tag=[Tag to use when adding a dependency from Git]:TAG: ' \
 '--branch=[Branch to use when adding a dependency from Git]:BRANCH: ' \
 '*--extra=[Extras to enable for the dependency]:EXTRA: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -348,9 +358,11 @@ never\:"Disables colored output"))' \
 (remove)
 _arguments "${_arguments_options[@]}" : \
 '(--dev)--optional=[Remove the packages from the specified optional dependency group]:OPTIONAL: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -451,9 +463,11 @@ never\:"Disables colored output"))' \
 _arguments "${_arguments_options[@]}" : \
 '(--all-extras)*--extra=[Include optional dependencies from the extra group name]:EXTRA: ' \
 '*--no-install-package=[Do not install the given package(s)]:NO_INSTALL_PACKAGE: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -558,9 +572,11 @@ never\:"Disables colored output"))' \
 ;;
 (lock)
 _arguments "${_arguments_options[@]}" : \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -655,9 +671,11 @@ _arguments "${_arguments_options[@]}" : \
 '-o+[Write the exported requirements to the given file]:OUTPUT_FILE:_files' \
 '--output-file=[Write the exported requirements to the given file]:OUTPUT_FILE:_files' \
 '*--no-emit-package=[Do not emit the given package(s)]:NO_EMIT_PACKAGE: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -708,6 +726,8 @@ never\:"Disables colored output"))' \
 '--dev[Include development dependencies]' \
 '--no-dev[Omit development dependencies]' \
 '(--no-dev)--only-dev[Omit non-development dependencies]' \
+'--no-header[Exclude the comment header at the top of the generated output file]' \
+'--header[]' \
 '--no-editable[Install any editable dependencies, including the project and any workspace members, as non-editable]' \
 '--hashes[Include hashes for all dependencies]' \
 '--no-hashes[Omit hashes in the generated output]' \
@@ -762,9 +782,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--package=[Display only the specified packages]:PACKAGE: ' \
 '*--no-build-package=[Don'\''t build source distributions for a specific package]:NO_BUILD_PACKAGE: ' \
 '*--no-binary-package=[Don'\''t install pre-built wheels for a specific package]:NO_BINARY_PACKAGE: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -828,6 +850,8 @@ never\:"Disables colored output"))' \
 '--universal[Show a platform-independent dependency tree]' \
 '--no-dedupe[Do not de-duplicate repeated dependencies. Usually, when a package has already displayed its dependencies, further occurrences will not re-display its dependencies, and will include a (*) to indicate it has already been shown. This flag will cause those duplicates to be repeated]' \
 '--invert[Show the reverse dependencies for the given package. This flag will invert the tree and display the packages that depend on the given package]' \
+'--dev[Include development dependencies]' \
+'(--invert)--no-dev[Omit development dependencies]' \
 '(--frozen)--locked[Assert that the \`uv.lock\` will remain unchanged]' \
 '(--locked)--frozen[Display the requirements without locking the project]' \
 '--no-build[Don'\''t build source distributions]' \
@@ -922,9 +946,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--with=[Run with the given packages installed]:WITH: ' \
 '*--with-editable=[Run with the given packages installed as editables]:WITH_EDITABLE: ' \
 '*--with-requirements=[Run with all packages listed in the given \`requirements.txt\` files]:WITH_REQUIREMENTS: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -1022,9 +1048,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--with=[Run with the given packages installed]:WITH: ' \
 '*--with-editable=[Run with the given packages installed as editables]:WITH_EDITABLE: ' \
 '*--with-requirements=[Run with all packages listed in the given \`requirements.txt\` files]:WITH_REQUIREMENTS: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -1118,12 +1146,15 @@ never\:"Disables colored output"))' \
 ;;
 (install)
 _arguments "${_arguments_options[@]}" : \
+'*--with-editable=[Include the given packages as editables]:WITH_EDITABLE: ' \
 '--from=[The package to install commands from]:FROM: ' \
 '*--with=[Include the following extra requirements]:WITH: ' \
 '*--with-requirements=[Run all requirements listed in the given \`requirements.txt\` files]:WITH_REQUIREMENTS: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -1221,9 +1252,11 @@ never\:"Disables colored output"))' \
 _arguments "${_arguments_options[@]}" : \
 '-p+[Upgrade a tool, and specify it to use the given Python interpreter to build its environment. Use with \`--all\` to apply to all tools.]:PYTHON: ' \
 '--python=[Upgrade a tool, and specify it to use the given Python interpreter to build its environment. Use with \`--all\` to apply to all tools.]:PYTHON: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -1855,9 +1888,11 @@ _arguments "${_arguments_options[@]}" : \
 '*-b+[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '(--all-extras)*--extra=[Include optional dependencies from the extra group name; may be provided more than once]:EXTRA: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -2013,9 +2048,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--constraint=[Constrain versions using the given requirements files]:CONSTRAINT: ' \
 '*-b+[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--reinstall-package=[Reinstall a specific package, regardless of whether it'\''s already installed. Implies \`--refresh-package\`]:REINSTALL_PACKAGE: ' \
@@ -2142,9 +2179,11 @@ _arguments "${_arguments_options[@]}" : \
 '*-b+[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '(--all-extras)*--extra=[Include optional dependencies from the extra group name; may be provided more than once]:EXTRA: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
@@ -2239,6 +2278,8 @@ never\:"Disables colored output"))' \
 '--no-break-system-packages[]' \
 '(--no-binary --only-binary)--no-build[Don'\''t build source distributions]' \
 '(--no-binary --only-binary)--build[]' \
+'--inexact[Do not remove extraneous packages present in the environment]' \
+'--exact[Perform an exact sync, removing extraneous packages]' \
 '--strict[Validate the Python environment after completing the installation, to detect and with missing dependencies or other issues]' \
 '--no-strict[]' \
 '--dry-run[Perform a dry run, i.e., don'\''t actually install anything but resolve the dependencies and print the resulting plan]' \
@@ -2451,6 +2492,8 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '--strict[Validate the Python environment, to detect packages with missing dependencies and other issues]' \
 '--no-strict[]' \
+'-f[Show the full list of installed files for each package]' \
+'--files[Show the full list of installed files for each package]' \
 '--system[Show a package in the system Python environment]' \
 '--no-system[]' \
 '--disable-pip-version-check[]' \
@@ -2589,9 +2632,11 @@ _arguments "${_arguments_options[@]}" : \
 '-p+[The Python interpreter to use for the virtual environment.]:PYTHON: ' \
 '--python=[The Python interpreter to use for the virtual environment.]:PYTHON: ' \
 '--prompt=[Provide an alternative prompt prefix for the virtual environment.]:PROMPT: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '--index-strategy=[The strategy to use when resolving against multiple index URLs]:INDEX_STRATEGY:((first-index\:"Only use results from the first index that returns a match for a given package name"
@@ -2667,9 +2712,11 @@ _arguments "${_arguments_options[@]}" : \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building distributions]:BUILD_CONSTRAINT: ' \
 '-p+[The Python interpreter to use for the build environment.]:PYTHON: ' \
 '--python=[The Python interpreter to use for the build environment.]:PYTHON: ' \
-'-i+[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'--index-url=[The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
-'*--extra-index-url=[Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
+'*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
+'--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
+'-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'--index-url=[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
+'*--extra-index-url=[(Deprecated\: use \`--index\` instead) Extra URLs of package indexes to use, in addition to \`--index-url\`]:EXTRA_INDEX_URL: ' \
 '*-f+[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*--find-links=[Locations to search for candidate distributions, in addition to those found in the registry indexes]:FIND_LINKS: ' \
 '*-P+[Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies \`--refresh-package\`]:UPGRADE_PACKAGE: ' \
