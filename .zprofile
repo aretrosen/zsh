@@ -14,7 +14,7 @@ export PROFILE_TASK='-m test.regrtest --pgo -j0'
 export ASAN_OPTIONS='stack_trace_format="[frame=%n, function=%f, location=%S]":strict_string_checks=1:detect_stack_use_after_return=1:debug=1:atexit=1:detect_invalid_pointer_pairs=2:check_initialization_order=1:strict_init_order=1:detect_leaks=1'
 
 typeset -U path
-path=("$HOME/.local/bin" "$PNPM_HOME" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" "$XDG_DATA_HOME/fzf/bin" "/usr/games" $path)
+path=("$HOME/.local/bin" "$HOME/.modular/bin/" "$PNPM_HOME" "$ANDROID_HOME/tools" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools" "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" "$XDG_DATA_HOME/fzf/bin" "/usr/games" $path)
 export PATH
 
 source "$HOME/.cargo/env"

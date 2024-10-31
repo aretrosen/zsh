@@ -15,7 +15,7 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
 	command fd -c always -H --no-ignore-vcs -E .git -td . "${1}"
 }
-export FZF_DEFAULT_OPTS="--ansi --height 40% --layout=reverse --border"
+export FZF_DEFAULT_OPTS="--ansi --height 40% --tmux --layout=reverse --border"
 export FZF_ALT_C_OPTS="--preview 'command eza -a --tree --level=2 {}'"
 export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 {}' --select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
@@ -74,14 +74,13 @@ alias vim="command nvim"
 alias vi="vim"
 
 # emacs
-# alias em="command emacsclient --alternate-editor= --tty"
-# emacs() {
-# 	if [[ -n "$*" ]]; then
-# 	  command emacsclient --alternate-editor= --reuse-frame "$@"
-# 	else
-# 	  command emacsclient --alternate-editor= --create-frame
-# 	fi
-# }
+emacs() {
+	if [[ -n "$*" ]]; then
+	  command emacsclient --alternate-editor= --reuse-frame "$@"
+	else
+	  command emacsclient --alternate-editor= --create-frame
+	fi
+}
 
 # journalctl error mesages
 alias jctl="command journalctl -xb -p 0..4"

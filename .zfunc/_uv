@@ -63,7 +63,10 @@ never\:"Disables colored output"))' \
         case $line[1] in
             (run)
 _arguments "${_arguments_options[@]}" : \
-'(--all-extras)*--extra=[Include optional dependencies from the extra group name]:EXTRA: ' \
+'(--all-extras)*--extra=[Include optional dependencies from the specified extra name]:EXTRA: ' \
+'(--only-group)*--group=[Include dependencies from the specified dependency group]:GROUP: ' \
+'*--no-group=[Exclude dependencies from the specified dependency group]:NO_GROUP: ' \
+'(--group)*--only-group=[Only include dependencies from the specified dependency group]:ONLY_GROUP: ' \
 '*--with=[Run with the given packages installed]:WITH: ' \
 '*--with-editable=[Run with the given packages installed as editables]:WITH_EDITABLE: ' \
 '*--with-requirements=[Run with all packages listed in the given \`requirements.txt\` files]:WITH_REQUIREMENTS: ' \
@@ -121,11 +124,11 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '(--extra)--all-extras[Include all optional dependencies]' \
 '--no-all-extras[]' \
-'--dev[Include development dependencies]' \
-'--no-dev[Omit development dependencies]' \
+'--dev[Include the development dependency group]' \
+'--no-dev[Omit the development dependency group]' \
 '(-s --script)-m[Run a Python module]' \
 '(-s --script)--module[Run a Python module]' \
-'(--no-dev)--only-dev[Omit non-development dependencies]' \
+'(--no-dev)--only-dev[Only include the development dependency group]' \
 '--no-editable[Install any editable dependencies, including the project and any workspace members, as non-editable]' \
 '--isolated[Run the command in an isolated virtual environment]' \
 '(--frozen)--no-sync[Avoid syncing the virtual environment]' \
@@ -209,10 +212,10 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '(--package)--virtual[Create a virtual project, rather than a package]' \
 '--package[Set up the project to be built as a Python package]' \
-'(--lib)--no-package[Do not set up the project to be built as a Python package]' \
+'(--lib --build-backend)--no-package[Do not set up the project to be built as a Python package]' \
 '(--lib --script)--app[Create a project for an application]' \
 '(--app --script)--lib[Create a project for a library]' \
-'(--app --lib --package)--script[Create a script]' \
+'(--app --lib --package --build-backend)--script[Create a script]' \
 '--no-readme[Do not create a \`README.md\` file]' \
 '--no-pin-python[Do not create a \`.python-version\` file for the project]' \
 '--no-workspace[Avoid discovering a workspace and create a standalone project]' \
@@ -246,7 +249,8 @@ never\:"Disables colored output"))' \
 _arguments "${_arguments_options[@]}" : \
 '*-r+[Add all packages listed in the given \`requirements.txt\` files]:REQUIREMENTS:_files' \
 '*--requirements=[Add all packages listed in the given \`requirements.txt\` files]:REQUIREMENTS:_files' \
-'(--dev)--optional=[Add the requirements to the specified optional dependency group]:OPTIONAL: ' \
+'(--dev --group)--optional=[Add the requirements to the package'\''s optional dependencies for the specified extra]:OPTIONAL: ' \
+'(--dev --optional)--group=[Add the requirements to the specified dependency group]:GROUP: ' \
 '--rev=[Commit to use when adding a dependency from Git]:REV: ' \
 '--tag=[Tag to use when adding a dependency from Git]:TAG: ' \
 '--branch=[Branch to use when adding a dependency from Git]:BRANCH: ' \
@@ -304,7 +308,7 @@ never\:"Disables colored output"))' \
 '--directory=[Change to the given directory prior to running the command]:DIRECTORY:_files' \
 '--project=[Run the command within the given project directory]:PROJECT:_files' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
-'(--optional)--dev[Add the requirements as development dependencies]' \
+'(--optional --group)--dev[Add the requirements to the development dependency group]' \
 '--editable[Add the requirements as editable]' \
 '--no-editable[]' \
 '(--editable --no-editable --rev --tag --branch)--raw-sources[Add source requirements to \`project.dependencies\`, rather than \`tool.uv.sources\`]' \
@@ -357,7 +361,8 @@ never\:"Disables colored output"))' \
 ;;
 (remove)
 _arguments "${_arguments_options[@]}" : \
-'(--dev)--optional=[Remove the packages from the specified optional dependency group]:OPTIONAL: ' \
+'(--dev --group)--optional=[Remove the packages from the project'\''s optional dependencies for the specified extra]:OPTIONAL: ' \
+'(--dev --optional)--group=[Remove the packages from the specified dependency group]:GROUP: ' \
 '*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
 '--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
 '-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
@@ -411,7 +416,7 @@ never\:"Disables colored output"))' \
 '--directory=[Change to the given directory prior to running the command]:DIRECTORY:_files' \
 '--project=[Run the command within the given project directory]:PROJECT:_files' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
-'(--optional)--dev[Remove the packages from the development dependencies]' \
+'(--optional --group)--dev[Remove the packages from the development dependency group]' \
 '(--frozen)--no-sync[Avoid syncing the virtual environment after re-locking the project]' \
 '(--frozen)--locked[Assert that the \`uv.lock\` will remain unchanged]' \
 '(--locked)--frozen[Remove dependencies without re-locking the project]' \
@@ -461,7 +466,10 @@ never\:"Disables colored output"))' \
 ;;
 (sync)
 _arguments "${_arguments_options[@]}" : \
-'(--all-extras)*--extra=[Include optional dependencies from the extra group name]:EXTRA: ' \
+'(--all-extras)*--extra=[Include optional dependencies from the specified extra name]:EXTRA: ' \
+'(--only-group)*--group=[Include dependencies from the specified dependency group]:GROUP: ' \
+'*--no-group=[Exclude dependencies from the specified dependency group]:NO_GROUP: ' \
+'(--group)*--only-group=[Only include dependencies from the specified dependency group]:ONLY_GROUP: ' \
 '*--no-install-package=[Do not install the given package(s)]:NO_INSTALL_PACKAGE: ' \
 '*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
 '--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
@@ -517,9 +525,9 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '(--extra)--all-extras[Include all optional dependencies]' \
 '--no-all-extras[]' \
-'--dev[Include development dependencies]' \
-'--no-dev[Omit development dependencies]' \
-'(--no-dev)--only-dev[Omit non-development dependencies]' \
+'--dev[Include the development dependency group]' \
+'--no-dev[Omit the development dependency group]' \
+'(--no-dev)--only-dev[Only include the development dependency group]' \
 '--no-editable[Install any editable dependencies, including the project and any workspace members, as non-editable]' \
 '--inexact[Do not remove extraneous packages present in the environment]' \
 '--exact[Perform an exact sync, removing extraneous packages]' \
@@ -624,6 +632,7 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '(--frozen)--locked[Assert that the \`uv.lock\` will remain unchanged]' \
 '(--locked)--frozen[Assert that a \`uv.lock\` exists, without updating it]' \
+'(--frozen --locked)--dry-run[Perform a dry run, without writing the lockfile]' \
 '--no-index[Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via \`--find-links\`]' \
 '-U[Allow package upgrades, ignoring pinned versions in any existing output file. Implies \`--refresh\`]' \
 '--upgrade[Allow package upgrades, ignoring pinned versions in any existing output file. Implies \`--refresh\`]' \
@@ -667,7 +676,10 @@ never\:"Disables colored output"))' \
 _arguments "${_arguments_options[@]}" : \
 '--format=[The format to which \`uv.lock\` should be exported]:FORMAT:((requirements-txt\:"Export in \`requirements.txt\` format"))' \
 '--package=[Export the dependencies for a specific package in the workspace]:PACKAGE: ' \
-'(--all-extras)*--extra=[Include optional dependencies from the extra group name]:EXTRA: ' \
+'(--all-extras)*--extra=[Include optional dependencies from the specified extra name]:EXTRA: ' \
+'(--only-group)*--group=[Include dependencies from the specified dependency group]:GROUP: ' \
+'*--no-group=[Exclude dependencies from the specified dependency group]:NO_GROUP: ' \
+'(--group)*--only-group=[Only include dependencies from the specified dependency group]:ONLY_GROUP: ' \
 '-o+[Write the exported requirements to the given file]:OUTPUT_FILE:_files' \
 '--output-file=[Write the exported requirements to the given file]:OUTPUT_FILE:_files' \
 '*--no-emit-package=[Do not emit the given package(s)]:NO_EMIT_PACKAGE: ' \
@@ -723,9 +735,9 @@ never\:"Disables colored output"))' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
 '(--extra)--all-extras[Include all optional dependencies]' \
 '--no-all-extras[]' \
-'--dev[Include development dependencies]' \
-'--no-dev[Omit development dependencies]' \
-'(--no-dev)--only-dev[Omit non-development dependencies]' \
+'--dev[Include the development dependency group]' \
+'--no-dev[Omit the development dependency group]' \
+'(--no-dev)--only-dev[Only include the development dependency group]' \
 '--no-header[Exclude the comment header at the top of the generated output file]' \
 '--header[]' \
 '--no-editable[Install any editable dependencies, including the project and any workspace members, as non-editable]' \
@@ -780,6 +792,9 @@ _arguments "${_arguments_options[@]}" : \
 '--depth=[Maximum display depth of the dependency tree]:DEPTH: ' \
 '*--prune=[Prune the given package from the display of the dependency tree]:PRUNE: ' \
 '*--package=[Display only the specified packages]:PACKAGE: ' \
+'(--only-group)*--group=[Include dependencies from the specified dependency group]:GROUP: ' \
+'*--no-group=[Exclude dependencies from the specified dependency group]:NO_GROUP: ' \
+'(--group)*--only-group=[Only include dependencies from the specified dependency group]:ONLY_GROUP: ' \
 '*--no-build-package=[Don'\''t build source distributions for a specific package]:NO_BUILD_PACKAGE: ' \
 '*--no-binary-package=[Don'\''t install pre-built wheels for a specific package]:NO_BINARY_PACKAGE: ' \
 '*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
@@ -850,8 +865,9 @@ never\:"Disables colored output"))' \
 '--universal[Show a platform-independent dependency tree]' \
 '--no-dedupe[Do not de-duplicate repeated dependencies. Usually, when a package has already displayed its dependencies, further occurrences will not re-display its dependencies, and will include a (*) to indicate it has already been shown. This flag will cause those duplicates to be repeated]' \
 '--invert[Show the reverse dependencies for the given package. This flag will invert the tree and display the packages that depend on the given package]' \
-'--dev[Include development dependencies]' \
-'(--invert)--no-dev[Omit development dependencies]' \
+'--dev[Include the development dependency group]' \
+'(--no-dev)--only-dev[Only include the development dependency group]' \
+'(--invert)--no-dev[Omit the development dependency group]' \
 '(--frozen)--locked[Assert that the \`uv.lock\` will remain unchanged]' \
 '(--locked)--frozen[Display the requirements without locking the project]' \
 '--no-build[Don'\''t build source distributions]' \
@@ -1759,6 +1775,7 @@ never\:"Disables colored output"))' \
 '--directory=[Change to the given directory prior to running the command]:DIRECTORY:_files' \
 '--project=[Run the command within the given project directory]:PROJECT:_files' \
 '--config-file=[The path to a \`uv.toml\` file to use for configuration]:CONFIG_FILE:_files' \
+'--bin[Show the directory into which \`uv python\` will install Python executables.]' \
 '-n[Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation]' \
 '--no-cache[Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation]' \
 '--allow-python-downloads[Allow automatically downloading Python when required. \[env\: "UV_PYTHON_DOWNLOADS=auto"\]]' \
@@ -1887,7 +1904,7 @@ _arguments "${_arguments_options[@]}" : \
 '*--override=[Override versions using the given requirements files]:OVERRIDE: ' \
 '*-b+[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
-'(--all-extras)*--extra=[Include optional dependencies from the extra group name; may be provided more than once]:EXTRA: ' \
+'(--all-extras)*--extra=[Include optional dependencies from the specified extra name; may be provided more than once]:EXTRA: ' \
 '*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
 '--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
 '-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
@@ -2135,7 +2152,7 @@ never\:"Disables colored output"))' \
 '(--no-binary --only-binary)--build[]' \
 '--allow-empty-requirements[Allow sync of empty requirements, which will clear the environment of all packages]' \
 '--no-allow-empty-requirements[]' \
-'--strict[Validate the Python environment after completing the installation, to detect and with missing dependencies or other issues]' \
+'--strict[Validate the Python environment after completing the installation, to detect packages with missing dependencies or other issues]' \
 '--no-strict[]' \
 '--dry-run[Perform a dry run, i.e., don'\''t actually install anything but resolve the dependencies and print the resulting plan]' \
 '-a[]' \
@@ -2178,7 +2195,7 @@ _arguments "${_arguments_options[@]}" : \
 '*--override=[Override versions using the given requirements files]:OVERRIDE: ' \
 '*-b+[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
 '*--build-constraint=[Constrain build dependencies using the given requirements files when building source distributions]:BUILD_CONSTRAINT: ' \
-'(--all-extras)*--extra=[Include optional dependencies from the extra group name; may be provided more than once]:EXTRA: ' \
+'(--all-extras)*--extra=[Include optional dependencies from the specified extra name; may be provided more than once]:EXTRA: ' \
 '*--index=[The URLs to use when resolving dependencies, in addition to the default index]:INDEX: ' \
 '--default-index=[The URL of the default package index (by default\: <https\://pypi.org/simple>)]:DEFAULT_INDEX: ' \
 '-i+[(Deprecated\: use \`--default-index\` instead) The URL of the Python package index (by default\: <https\://pypi.org/simple>)]:INDEX_URL: ' \
@@ -2280,7 +2297,7 @@ never\:"Disables colored output"))' \
 '(--no-binary --only-binary)--build[]' \
 '--inexact[Do not remove extraneous packages present in the environment]' \
 '--exact[Perform an exact sync, removing extraneous packages]' \
-'--strict[Validate the Python environment after completing the installation, to detect and with missing dependencies or other issues]' \
+'--strict[Validate the Python environment after completing the installation, to detect packages with missing dependencies or other issues]' \
 '--no-strict[]' \
 '--dry-run[Perform a dry run, i.e., don'\''t actually install anything but resolve the dependencies and print the resulting plan]' \
 '--disable-pip-version-check[]' \
