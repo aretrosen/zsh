@@ -68,6 +68,10 @@ zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
+# Messing around
+# zstyle ':completion:*:(vi|vim|nvim):*' file-patterns './*%p(^-/):globbed-files *(-/):directories'
+# zstyle ':completion:*:(vi|vim|nvim):*' file-patterns './*%p(^-/):globbed-files *(-/):directories'
+
 
 # References:
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/completion/init.zsh

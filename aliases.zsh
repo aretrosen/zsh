@@ -67,7 +67,7 @@ alias -g C='| command wc -l'
 
 # get last 10 history
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
-alias minitru='em $ZDOTDIR/.zhistory'
+alias minitru='nvim $ZDOTDIR/.zhistory'
 
 # vim
 alias vim="command nvim"
@@ -136,3 +136,6 @@ alias code="code-insiders"
 
 # alias for micromamba
 alias conda="micromamba"
+
+# alias for trash
+alias trash="gio trash"
