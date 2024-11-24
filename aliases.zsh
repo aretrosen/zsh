@@ -1,8 +1,10 @@
 # eza aliases
-alias ls='eza --icons --group-directories-first --git'
-alias l='ls -lbh'
+alias ls='eza --icons --group-directories-first'
+alias la='eza -a --tree --group-directories-first'
+alias lr='la -lh --icons --level=2'
+alias l1='ls -1 '
+alias l='ls -lbh --git'
 alias ll='l -a'
-alias lr='eza -alh --icons --tree --level=2'
 alias lm='ll --sort=mod'
 
 # fzf with fd, bat and eza
@@ -21,7 +23,7 @@ export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # get faster download
-alias get='aria2c --max-connection-per-server=5 --continue'
+alias get='aria2c'
 
 # get resource usage
 alias df='df -ah'
@@ -34,6 +36,9 @@ alias cpi='cp -i'
 alias lni='ln -i'
 alias mvi='mv -i'
 alias rmi='rm -i'
+
+# alias for trash
+alias trash="gio trash"
 
 # ps aliases
 alias psa="ps auxf"
@@ -65,8 +70,7 @@ alias grep='command rg --hidden --smart-case'
 alias -g G='| grep'
 alias -g C='| command wc -l'
 
-# get last 10 history
-alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+# Edit history
 alias minitru='nvim $ZDOTDIR/.zhistory'
 
 # vim
@@ -88,19 +92,13 @@ alias jctl="command journalctl -xb -p 0..4"
 # YTDL setup
 export YTDL_AUDIO="$HOME/Music"
 export YTDL_VIDEO="$HOME/Videos"
-alias ytda='command yt-dlp -f "ba" -x --output-na-placeholder "" --embed-thumbnail --embed-metadata -P $YTDL_AUDIO -o "[%(album)s] %(title)s  %(artist)s (%(upload_date>%Y)s).%(ext)s"'
-alias ytdv='command yt-dlp -f "(bv*[fps>30]/bv*)[height<=1440]+ba/(b[fps>30]/b)[height<=1440]" --output-na-placeholder "" --sub-langs all --embed-subs --embed-thumbnail --embed-metadata -P $YTDL_VIDEO -o "%(title)s  %(channel)s (%(upload_date>%Y)s).%(ext)s"'
+alias ytda='command yt-dlp -f "ba" -x --audio-quality 0 -P $YTDL_AUDIO'
+alias ytdv='command yt-dlp -f "bv*+ba/b" -P $YTDL_VIDEO'
+alias tvdv='command yt-dlp -f "(bv*[vcodec=h264]/bv*)[height<=1440]+(ba[acodec=aac]/ba[acodec=mp4a]/ba)/(b[vcodec=h264]/b)[height<=1440]" -P $YTDL_VIDEO'
 
 # make directory and change directory
 mkcd() {
 	[[ -n "$1" ]] && mkdir -p -- "$1" && builtin cd -P -- "$1"
-}
-
-# safely remove a file
-saferm() {
-  [[ ! -n "$1" ]] && { echo "Needs one argument..."; return 1; }
-  [[ -d "$1" ]] && { echo "Cannot display a directory, exiting..."; return 1; }
-  [[ -f "$1" ]] && batcat "$1" && rm -i "$1"
 }
 
 # make directories with parent if necessary
@@ -133,9 +131,3 @@ alias shutdown="systemctl poweroff"
 
 # aliases for vscode
 alias code="code-insiders"
-
-# alias for micromamba
-alias conda="micromamba"
-
-# alias for trash
-alias trash="gio trash"

@@ -16,3 +16,6 @@
 [submodule "plugins/zsh-z"]
 	path = plugins/zsh-z
 	url = https://github.com/agkozak/zsh-z
+[submodule "plugins/zig-shell-completions"]
+	path = plugins/zig-shell-completions
+	url = https://github.com/ziglang/shell-completions
