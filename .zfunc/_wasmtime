@@ -186,6 +186,7 @@ _arguments "${_arguments_options[@]}" : \
 '*--dir=[Grant access of a host directory to a guest]:HOST_DIR[::GUEST_DIR]: ' \
 '*--env=[Pass an environment variable to the program]:NAME[=VAL]: ' \
 '--addr=[Socket address for the web server to bind to]:SOCKADDR: ' \
+'--shutdown-addr=[Socket address where, when connected to, will initiate a graceful shutdown]:SOCKADDR: ' \
 '--allow-precompiled[Allow executing precompiled WebAssembly modules as \`*.cwasm\` files]' \
 '--no-logging-prefix[Disable log prefixes of wasi-http handlers. if unspecified, logs will be prefixed with '\''stdout|stderr \[{req_id}\] \:\: '\'']' \
 '-h[Print help (see more with '\''--help'\'')]' \
@@ -225,6 +226,23 @@ _arguments "${_arguments_options[@]}" : \
 '-h[Print help]' \
 '--help[Print help]' \
 ':shell -- The shell to generate completions for:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(objdump)
+_arguments "${_arguments_options[@]}" : \
+'*--funcs=[What functions should be printed]:KIND:(all wasm trampoline builtin libcall)' \
+'--filter=[String filter to apply to function names to only print some functions]:STR: ' \
+'--color=[Whether or not to use color]:COLOR: ' \
+'--addrmap=[Whether or not to interleave instructions with address maps]' \
+'--address-width=[Column width of how large an address is rendered as]:N: ' \
+'--traps=[Whether or not to show information about what instructions can trap]' \
+'--stack-maps=[Whether or not to show information about stack maps]' \
+'--addresses[Whether or not to display function/instruction addresses]' \
+'--address-jumps[Whether or not to try to only display addresses of instruction jump targets]' \
+'--bytes[Whether or not instruction bytes are disassembled]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'::cwasm -- The path to a compiled `*.cwasm` file:_files' \
 && ret=0
 ;;
 (help)
@@ -287,6 +305,10 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 && ret=0
 ;;
+(objdump)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
 (help)
 _arguments "${_arguments_options[@]}" : \
 && ret=0
@@ -311,6 +333,7 @@ _wasmtime_commands() {
 'settings:Displays available Cranelift settings for a target' \
 'wast:Runs a WebAssembly test script file' \
 'completion:Generate shell completions for the \`wasmtime\` CLI' \
+'objdump:Inspect \`*.cwasm\` files output from Wasmtime' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'wasmtime commands' commands "$@"
@@ -372,6 +395,7 @@ _wasmtime__help_commands() {
 'settings:Displays available Cranelift settings for a target' \
 'wast:Runs a WebAssembly test script file' \
 'completion:Generate shell completions for the \`wasmtime\` CLI' \
+'objdump:Inspect \`*.cwasm\` files output from Wasmtime' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'wasmtime help commands' commands "$@"
@@ -408,6 +432,11 @@ _wasmtime__help__help_commands() {
     local commands; commands=()
     _describe -t commands 'wasmtime help help commands' commands "$@"
 }
+(( $+functions[_wasmtime__help__objdump_commands] )) ||
+_wasmtime__help__objdump_commands() {
+    local commands; commands=()
+    _describe -t commands 'wasmtime help objdump commands' commands "$@"
+}
 (( $+functions[_wasmtime__help__run_commands] )) ||
 _wasmtime__help__run_commands() {
     local commands; commands=()
@@ -427,6 +456,11 @@ _wasmtime__help__settings_commands() {
 _wasmtime__help__wast_commands() {
     local commands; commands=()
     _describe -t commands 'wasmtime help wast commands' commands "$@"
+}
+(( $+functions[_wasmtime__objdump_commands] )) ||
+_wasmtime__objdump_commands() {
+    local commands; commands=()
+    _describe -t commands 'wasmtime objdump commands' commands "$@"
 }
 (( $+functions[_wasmtime__run_commands] )) ||
 _wasmtime__run_commands() {

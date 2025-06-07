@@ -44,7 +44,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (uninstall)
@@ -53,7 +53,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (default)
@@ -62,7 +62,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (toolchain)
@@ -94,7 +94,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (remove)
@@ -103,7 +103,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (uninstall)
@@ -112,7 +112,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (link)
@@ -121,7 +121,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 ':path:_files' \
 && ret=0
 ;;
@@ -176,7 +176,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (set)
@@ -185,7 +185,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 && ret=0
 ;;
 (remove)
@@ -227,7 +227,7 @@ _arguments "${_arguments_options[@]}" \
 '--help[Prints help information]' \
 '-V[Prints version information]' \
 '--version[Prints version information]' \
-':toolchain -- Toolchain name, such as 'stable', 'nightly', or '3.3.0'. For more information see `elan help toolchain`:_files' \
+':toolchain -- Toolchain name, such as 'stable', 'beta', 'nightly', or '4.3.0'. For more information see `elan help toolchain`:_files' \
 ':command:_files' \
 && ret=0
 ;;

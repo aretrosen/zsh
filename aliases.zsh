@@ -7,19 +7,23 @@ alias l='ls -lbh --git'
 alias ll='l -a'
 alias lm='ll --sort=mod'
 
+# aliases for debian
+alias fd='fdfind'
+alias bat='batcat'
+
 # fzf with fd, bat and eza
-export FZF_DEFAULT_COMMAND='command fd -c always -H --no-ignore-vcs -E .git -tf'
-export FZF_ALT_C_COMMAND='command fd -c always -H --no-ignore-vcs -E .git -td'
+export FZF_DEFAULT_COMMAND="fdfind -c always -H --no-ignore-vcs -E .git -tf"
+export FZF_ALT_C_COMMAND="fdfind -c always -H --no-ignore-vcs -E .git -td"
 export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 _fzf_compgen_path() {
-	command fd -c always -H --no-ignore-vcs -E .git -tf . "${1}"
+	fdfind -c always -H --no-ignore-vcs -E .git -tf . "${1}"
 }
 _fzf_compgen_dir() {
-	command fd -c always -H --no-ignore-vcs -E .git -td . "${1}"
+	fdfind -c always -H --no-ignore-vcs -E .git -td . "${1}"
 }
 export FZF_DEFAULT_OPTS="--ansi --height 40% --tmux --layout=reverse --border"
-export FZF_ALT_C_OPTS="--preview 'command eza -a --tree --level=2 {}'"
-export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 {}' --select-1 --exit-0"
+export FZF_ALT_C_OPTS="--preview 'eza -a --tree --level=2 {}'"
+export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range :500 {}' --select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # get faster download
@@ -90,11 +94,18 @@ emacs() {
 alias jctl="command journalctl -xb -p 0..4"
 
 # YTDL setup
+# Includes HOTFIX
 export YTDL_AUDIO="$HOME/Music"
 export YTDL_VIDEO="$HOME/Videos"
 alias ytda='command yt-dlp -f "ba" -x --audio-quality 0 -P $YTDL_AUDIO'
-alias ytdv='command yt-dlp -f "bv*+ba/b" -P $YTDL_VIDEO'
-alias tvdv='command yt-dlp -f "(bv*[vcodec=h264]/bv*)[height<=1440]+(ba[acodec=aac]/ba[acodec=mp4a]/ba)/(b[vcodec=h264]/b)[height<=1440]" -P $YTDL_VIDEO'
+ytdv () {
+	command yt-dlp -f 'bv*+ba/b' -P "$YTDL_VIDEO" "$1"
+	command yt-dlp --output-na-placeholder "" --sub-langs "en,en-orig" --write-auto-subs --skip-download -o "%(playlist,title&{}|YouTube)s/%(album,playlist_index&{} - |)s%(title)s - %(artist,creator,channel)s - %(release_date>%Y,upload_date>%Y|)s.%(ext)s" -P "$YTDL_VIDEO" "$1"
+}
+yttv () {
+	command yt-dlp -f '(bv*[vcodec=h264]/bv*)[height<=1440]+(ba[acodec=aac]/ba[acodec=mp4a]/ba)/(b[vcodec=h264]/b)[height<=1440]' -P "$YTDL_VIDEO" "$1"
+	command yt-dlp --output-na-placeholder "" --sub-langs "en,en-orig" --write-auto-subs --skip-download -o "%(playlist,title&{}|YouTube)s/%(album,playlist_index&{} - |)s%(title)s - %(artist,creator,channel)s - %(release_date>%Y,upload_date>%Y|)s.%(ext)s" -P "$YTDL_VIDEO" "$1"
+}
 
 # make directory and change directory
 mkcd() {
@@ -131,3 +142,7 @@ alias shutdown="systemctl poweroff"
 
 # aliases for vscode
 alias code="code-insiders"
+
+# use rlwrap for sbcl
+alias sbcl="rlwrap sbcl"
+alias swipl="rlwrap swipl"
